@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from .models import Group, Post 
 
+from django.shortcuts import render, get_object_or_404
+
+POSTS_ON_PAGE: int = 10
 
 def index(request):
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.all()[:POSTS_ON_PAGE]
     context = {
         'title': title,
         'posts': posts,
@@ -17,7 +19,7 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     template = 'posts/group_list.html'
     title = 'Здесь будет информация о группах проекта Yatube'
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.all()[:POSTS_ON_PAGE]
     context = {
         'group': group,
         'title': title,
