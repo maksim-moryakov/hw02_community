@@ -23,7 +23,7 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
-        
+
 
 class Group(models.Model):
     title = models.CharField('Заголовок', max_length=200)

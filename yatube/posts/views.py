@@ -1,8 +1,9 @@
-from .models import Group, Post 
+from .models import Group, Post
 
 from django.shortcuts import render, get_object_or_404
 
 POSTS_ON_PAGE: int = 10
+
 
 def index(request):
     template = 'posts/index.html'
