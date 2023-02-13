@@ -20,8 +20,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     # Без нее тесты не проходят
     settings.EMPTY_VALUE_DISPLAY
-    # Артём большое спасибо за помощь!!! Ты лучший!!!
-    # потом удалю данные комментарии.
+    # На замену строчки 20, т.к. константа вынесена в settings
 
 
 @admin.register(Group)
