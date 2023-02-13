@@ -4,6 +4,7 @@ from .models import Group, Post
 
 from django.conf import settings
 
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
@@ -18,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('pub_date',)
     settings.EMPTY_VALUE_DISPLAY
     # Артём большое спасибо за помощь!!! Ты лучший!!!
-    # потом удалю данные комментарии. 
+    # потом удалю данные комментарии.
 
 
 @admin.register(Group)
