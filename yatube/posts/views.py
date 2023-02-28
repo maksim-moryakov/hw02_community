@@ -1,8 +1,12 @@
 from .models import Group, Post, User
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from django.core.paginator import Paginator
+
+from django.contrib.auth.decorators import login_required
+
+from .forms import PostForm
 
 POSTS_ON_PAGE: int = 10
 
@@ -57,3 +61,19 @@ def post_detail(request, post_id):
         'post_number': post_number
     }
     return render(request, 'posts/post_detail.html', context)
+
+@login_required
+def post_create(request):
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None
+    )
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect('posts:profile', post.author.username)
+    context = {
+        'form': form,
+    }
+    return render(request, 'posts/create_post.html', context)
