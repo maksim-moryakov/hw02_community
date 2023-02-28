@@ -14,11 +14,11 @@
     <title>{% block title %}{% endblock %}</title>
     {% block header %}{% endblock %}
   </head>
-  <body>       
+  <body class="container py-5">       
     <header>
       {% include 'includes/header.html' %}
     </header>
-    <main class="container py-5">
+    <main>
       {% block content %}
       {% endblock %}
     </main>
