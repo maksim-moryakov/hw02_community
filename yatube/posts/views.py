@@ -67,7 +67,7 @@ def post_create(request):
         post = form.save(commit=False)
         post.author = request.user
         post.save()
-        return redirect('posts:profile', post.user)
+        return redirect('posts:profile', post.author)
     context = {
         'form': form,
     }
